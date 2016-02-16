@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fezrestia.android.application.arclockscreen"
+    android:versionCode="1"
+    android:versionName=":Ver.A++"
+>
+
+    <uses-sdk android:minSdkVersion="10" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:name="ArcLockScreenApplication"
+        android:label="@string/application_label"
+        android:icon="@drawable/arclockscreen_application_icon"
+        android:persistent="true"
+    >
+        <activity
+            android:name=".activity.ArcLockScreenPreferenceActivity"
+            android:label="@string/application_label"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver
+             android:name=".receiver.ArcLockScreenReceiver"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".service.ArcLockScreenService" />
+
+    </application>
+
+</manifest>

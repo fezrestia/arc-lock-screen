@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+    <!-- Arc Lock Screen -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="24sp"
+        android:text="ArcLockScreen preferences"
+    />
+
+    <CheckBox
+        android:id="@+id/check_is_enabled"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:text="Enable / Disable"
+    />
+
+    <CheckBox
+        android:id="@+id/check_is_rapid_boot_enabled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/check_is_enabled"
+        android:text="Allow rapid boot"
+    />
+
+    <!-- Background Picture Selector -->
+    <Button
+        android:id="@+id/button_background_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/check_is_rapid_boot_enabled"
+        android:text="Select Background Picture"
+    />
+
+    <!-- Clear Background Picture -->
+    <Button
+        android:id="@+id/button_background_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/button_background_select"
+        android:text="CLEAR"
+    />
+
+    <!-- Separator -->
+    <View
+        android:id="@+id/separator_0"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@id/button_background_select"
+        android:background="#DDFFFFFF"
+    />
+
+
+
+    <!-- Lock Test -->
+    <Button
+        android:id="@+id/button_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Display ArcLockScreen"
+    />
+
+    <!-- Finish Activity -->
+    <Button
+        android:id="@+id/button_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_test"
+        android:text="Complete Settings"
+    />
+
+</RelativeLayout>

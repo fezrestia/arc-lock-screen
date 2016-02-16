@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.fezrestia.android.application.arclockscreen.view.ArcLockScreenView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+    <!-- Back Ground -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:src="#AA111111"
+    />
+
+    <!-- Back Arc -->
+    <ImageView
+        android:id="@+id/back_arc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:adjustViewBounds="true"
+        android:scaleType="matrix"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:src="@drawable/back_arc_icon"
+    />
+
+    <!-- Gesture Guide Ghost -->
+    <RelativeLayout
+        android:id="@+id/gesture_guide_ghost_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/back_arc"
+        android:layout_alignTop="@id/back_arc"
+        android:layout_alignRight="@id/back_arc"
+        android:layout_alignBottom="@id/back_arc"
+    >
+        <ImageView
+            android:id="@+id/gesture_guide_ghost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/ghost_arc_icon"
+        />
+    </RelativeLayout>
+
+    <!-- Back Arc Highlighted -->
+    <ImageView
+        android:id="@+id/back_arc_highlighted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:adjustViewBounds="true"
+        android:scaleType="matrix"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:src="@drawable/back_arc_highlighted_icon"
+    />
+
+    <!-- Arrow -->
+    <RelativeLayout
+        android:id="@+id/arrow_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/back_arc"
+        android:layout_alignTop="@id/back_arc"
+        android:layout_alignRight="@id/back_arc"
+        android:layout_alignBottom="@id/back_arc"
+    >
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/arrow_icon"
+        />
+    </RelativeLayout>
+
+    <!-- Arrow Destination -->
+    <RelativeLayout
+        android:id="@+id/destination_arrow_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/back_arc"
+        android:layout_alignTop="@id/back_arc"
+        android:layout_alignRight="@id/back_arc"
+        android:layout_alignBottom="@id/back_arc"
+    >
+        <ImageView
+            android:id="@+id/destination_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/arrow_highlighted_icon"
+        />
+    </RelativeLayout>
+
+</com.fezrestia.android.application.arclockscreen.view.ArcLockScreenView>

@@ -9,6 +9,7 @@ import com.fezrestia.android.application.arclockscreen.service.ArcLockScreenServ
 public class ArcLockScreenReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+android.util.Log.e("TraceLog", "### ArcLockScreenReceiver.onReceive():[IN] [ACTION=" + intent.getAction() + "]");
         // Start service and send intent.
         Intent service = new Intent(context, ArcLockScreenService.class);
         service.setAction(intent.getAction());

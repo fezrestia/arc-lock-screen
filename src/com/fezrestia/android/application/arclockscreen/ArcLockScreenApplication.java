@@ -19,11 +19,14 @@ public class ArcLockScreenApplication extends Application {
 
     @Override
     public void onCreate() {
+android.util.Log.e("TraceLog", "### ArcLockScreenApplication.onCreate():[IN]");
         super.onCreate();
 
         // Filter to detect screen off.
         IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
 
         // Register.
         mReceiver = new ArcLockScreenReceiver();
@@ -32,6 +35,7 @@ public class ArcLockScreenApplication extends Application {
 
     @Override
     public void onTerminate() {
+android.util.Log.e("TraceLog", "### ArcLockScreenApplication.onTerminate():[IN]");
         super.onTerminate();
 
         // Unregister.

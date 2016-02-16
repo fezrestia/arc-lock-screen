@@ -25,6 +25,14 @@ public class ArcLockScreenService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
 
+        if (intent == null) {
+            // NOP. This service may be re-started.
+android.util.Log.e("TraceLog", "### ArcLockScreenService.onStart():[IN] [Intent==null]");
+            ArcLockScreenController.getInstance().disableKeyguard(this);
+            return;
+        }
+android.util.Log.e("TraceLog", "### ArcLockScreenService.onStart():[IN] [ACTION=" + intent.getAction() + "]");
+
         // Get preference.
         SharedPreferences sp = getSharedPreferences(
                 ArcLockScreenApplication.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -37,25 +45,46 @@ public class ArcLockScreenService extends Service {
         }
 
         if (isEnabled) {
-            // Vanilla keyguard is always disabled to handle key event in device sleep.
-            ArcLockScreenController.getInstance().enableKeyguard(this);
-            ArcLockScreenController.getInstance().disableKeyguard(this);
+            String action = intent.getAction();
 
-            // Enable extended key guard screen.
-            ArcLockScreenController.getInstance().lock(ArcLockScreenService.this);
+            if (Intent.ACTION_SCREEN_ON.equals(action)) {
+
+                // Notify.
+                ArcLockScreenController.getInstance().onScreenOn();
+
+            } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                ArcLockScreenController.getInstance().disableKeyguard(this);
+
+                // Enable extended key guard screen.
+                ArcLockScreenController.getInstance().lock(ArcLockScreenService.this);
+
+                // Notify.
+                ArcLockScreenController.getInstance().onScreenOff();
+
+            } else if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
+                // Vanilla keyguard is always disabled to handle key event in device sleep.
+                ArcLockScreenController.getInstance().disableKeyguard(this);
+            } else if (Intent.ACTION_USER_PRESENT.equals(action)) {
+                // Lockscreen is still available.
+                ArcLockScreenController.getInstance().disableKeyguard(this);
+            } else {
+                // NOP. Unexpected sequence.
+            }
+
         } else {
             // NOP. Unexpected sequence.
             return;
         }
 
         // Register SCREEN_ON receiver.
-        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-        this.getApplicationContext().registerReceiver(screenOnReceiver, filter);
+//        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+//        this.getApplicationContext().registerReceiver(screenOnReceiver, filter);
     }
 
     class ScreenOnReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+android.util.Log.e("TraceLog", "### ArcLockScreenService.ScreenOnReceiver.onReceive():[IN] [ACTION=" + intent.getAction() + "]");
             // Unlock standard keyguard.
             ArcLockScreenController.getInstance().disableKeyguard(ArcLockScreenService.this);
 

@@ -39,9 +39,11 @@ public class ArcLockScreenController {
     }
 
     public void lock(Context context) {
+android.util.Log.e("TraceLog", "### ArcLockScreenController.lock():[IN]");
         if (mLockScreen != null) {
             // Device is already locked.
             // NOP.
+android.util.Log.e("TraceLog", "### ArcLockScreenController.lock():[Already Locked]");
             return;
         }
 
@@ -59,7 +61,7 @@ public class ArcLockScreenController {
         setLockScreenToWindow(context, mLockScreen);
 
         // Set screen timeout.
-        setScreenBackLightTimeOut(0);
+//        setScreenBackLightTimeOut(0);
     }
 
     private void setLockScreenToWindow(Context context, ArcLockScreenBaseView lockScreen) {
@@ -82,14 +84,16 @@ public class ArcLockScreenController {
     }
 
     public void unlock(){
+android.util.Log.e("TraceLog", "### ArcLockScreenController.unlock():[IN]");
         if (mLockScreen == null) {
             // Device is already unlocked.
             // NOP.
+android.util.Log.e("TraceLog", "### ArcLockScreenController.unlock():[Already UnLocked]");
             return;
         }
 
         // Reset screen out timeout.
-        setScreenBackLightTimeOut(SCREEN_TIME_OUT);
+//        setScreenBackLightTimeOut(SCREEN_TIME_OUT);
 
         // Release unlock listener.
         mLockScreen.setOnUnlockedListener(null);
@@ -137,5 +141,15 @@ public class ArcLockScreenController {
 
         // Enable key guard.
         mKeyguardLock.reenableKeyguard();
+    }
+
+    public void onScreenOn() {
+android.util.Log.e("TraceLog", "###### SCREEN ON");
+
+    }
+
+    public void onScreenOff() {
+android.util.Log.e("TraceLog", "###### SCREEN OFF");
+
     }
 }
